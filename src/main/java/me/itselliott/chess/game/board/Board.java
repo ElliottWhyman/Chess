@@ -28,6 +28,7 @@ public class Board {
     public static void setSquare(Vector2n positionVector, Piece piece) {
         if (board.containsKey(positionVector)) {
             board.get(positionVector).setPiece(piece);
+            if (piece != null) piece.setPositionVector(positionVector);
         }
     }
 

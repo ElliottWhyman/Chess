@@ -1,15 +1,15 @@
 package me.itselliott.chess.piece.pieces;
 
+import javafx.scene.Scene;
 import me.itselliott.chess.game.Player;
+import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.math.Vector2n;
-import me.itselliott.chess.piece.Piece;
-import me.itselliott.chess.piece.PieceIcon;
-import me.itselliott.chess.piece.UnitMoveVector;
+import me.itselliott.chess.piece.*;
 
 import java.util.*;
 
-public class Pawn extends Piece {
+public class Pawn extends Piece implements Promotable {
 
     private Set<Vector2n> unitMoveVectors = new HashSet<Vector2n>();
 
@@ -34,7 +34,20 @@ public class Pawn extends Piece {
     }
 
     @Override
+    public void promote(Piece promoting, Piece promoteTo, Square to) {
+        promoting.move(to);
+        if (to.isOccupied() && to.getPiece() != null) {
+            PieceHandler.removePiece(to.getPiece());
+        }
+        PieceHandler.addPiece(promoteTo, to);
+        System.out.println(promoteTo.getPlayer() + " has promote their " + this.getClass().getSimpleName() + " to a " + promoteTo.getClass().getSimpleName());
+    }
+
+    @Override
     public Set<Vector2n> getUnitMoveVectors() {
         return this.unitMoveVectors;
     }
+
+
+
 }

@@ -1,10 +1,9 @@
 package me.itselliott.chess.piece;
 
-import me.itselliott.chess.game.GameHandler;
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
-import me.itselliott.chess.game.board.gui.Window;
+import me.itselliott.chess.game.board.gui.ChessWindow;
 import me.itselliott.chess.math.Vector2n;
 
 import java.util.Set;
@@ -59,12 +58,11 @@ public abstract class Piece {
     }
 
     public void move(Square to) {
-        if (to.isOccupied()) {
-            PieceHandler.takePiece(this, to.getPiece());
-            Window.removeIcon(to);
+        if (to.isOccupied() && to.getPiece() != null) {
             System.out.println(this.getPlayer() + " has taken " + to.getPiece().getPlayer() + "'s " + to.getPiece().getClass().getSimpleName());
+            PieceHandler.removePiece(to.getPiece());
         }
-        Window.moveIcon(Board.getSquare(this.getPositionVector()), to);
+        ChessWindow.moveIcon(Board.getSquare(this.getPositionVector()), to);
         Board.setSquare(this.getPositionVector(), null);
         Board.setSquare(to.getPositionVector(), this);
         this.positionVector = to.getPositionVector();
@@ -79,6 +77,10 @@ public abstract class Piece {
     @Override
     public String toString() {
         return "Piece:[" + this.getClass().getSimpleName() + ", " + this.positionVector.toString() +"]";
+    }
+
+    public void setPositionVector(Vector2n positionVector) {
+        this.positionVector = positionVector;
     }
 
     public abstract Set<Vector2n> getUnitMoveVectors();

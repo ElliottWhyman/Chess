@@ -2,24 +2,53 @@ package me.itselliott.chess.piece;
 
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.game.board.Board;
+import me.itselliott.chess.game.board.Square;
+import me.itselliott.chess.game.board.gui.ChessWindow;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.pieces.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PieceHandler {
 
+    private static Set<Piece> activePieces = new HashSet<>();
     private static Set<Piece> takenPieces = new HashSet<>();
 
     private PieceHandler() {
 
     }
 
-    public static void takePiece(Piece taking, Piece taken) {
-        if (!takenPieces.contains(taken)) {
-            takenPieces.add(taken);
+    public static void removePiece(Piece removing) {
+        if (!takenPieces.contains(removing) && activePieces.contains(removing)) {
+            takenPieces.add(removing);
+            activePieces.remove(removing);
+            ChessWindow.removeIcon(Board.getSquare(removing.getPositionVector()));
+            Board.setSquare(removing.getPositionVector(), null);
         }
+    }
+
+    public static void addPiece(Piece adding, Square to) {
+        if (takenPieces.contains(adding) && !activePieces.contains(adding)) {
+            takenPieces.remove(adding);
+            activePieces.add(adding);
+            ChessWindow.addIcon(to, adding);
+            Board.setSquare(to.getPositionVector(), adding);
+        }
+    }
+
+    public static @Nullable Piece getPieceByPlayer(Class<? extends Piece> pieceClass, Player player) {
+        for (Piece piece : activePieces) {
+            if (piece.getClass().equals(pieceClass) && piece.getPlayer().equals(player))
+                return piece;
+        }
+        return null;
+    }
+
+    public static Set<Piece> getTakenPieces(Player player) {
+       return takenPieces.stream().filter(piece -> piece.getPlayer().equals(player)).collect(Collectors.toSet());
     }
 
 
@@ -37,7 +66,7 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(6,7), new Knight(Vector2n.valueOf(6,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));
         Board.setSquare(Vector2n.valueOf(5,7), new Bishop(Vector2n.valueOf(5,7), Player.BLACK, PieceIcon.BISHOP_BLACK));
         Board.setSquare(Vector2n.valueOf(4,7), new Bishop(Vector2n.valueOf(4,7), Player.BLACK, PieceIcon.KING_BLACK));
-        Board.setSquare(Vector2n.valueOf(3,7), new Queen(Vector2n.valueOf(3,7), Player.BLACK, PieceIcon.QUEEN_BLACK));
+        //Board.setSquare(Vector2n.valueOf(3,7), new Queen(Vector2n.valueOf(3,7), Player.BLACK, PieceIcon.QUEEN_BLACK));
         Board.setSquare(Vector2n.valueOf(2,7), new Rook(Vector2n.valueOf(2,7), Player.BLACK, PieceIcon.ROOK_BLACK));
         Board.setSquare(Vector2n.valueOf(1,7), new Knight(Vector2n.valueOf(1,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));
         Board.setSquare(Vector2n.valueOf(0,7), new Bishop(Vector2n.valueOf(0,7), Player.BLACK, PieceIcon.BISHOP_BLACK));
@@ -53,13 +82,16 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(0,6), new Pawn(Vector2n.valueOf(0,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(1,6), new Pawn(Vector2n.valueOf(1,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(2,6), new Pawn(Vector2n.valueOf(2,6), Player.BLACK, PieceIcon.PAWN_BLACK));
-        Board.setSquare(Vector2n.valueOf(3,6), new Pawn(Vector2n.valueOf(3,6), Player.BLACK, PieceIcon.PAWN_BLACK));
+        //Board.setSquare(Vector2n.valueOf(3,6), new Pawn(Vector2n.valueOf(3,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(4,6), new Pawn(Vector2n.valueOf(4,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(5,6), new Pawn(Vector2n.valueOf(5,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(6,6), new Pawn(Vector2n.valueOf(6,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(7,6), new Pawn(Vector2n.valueOf(7,6), Player.BLACK, PieceIcon.PAWN_BLACK));
 
-        System.out.println("size: " + takenPieces.size());
+        for (Square square : Board.getBoard().values()) {
+            if (square.isOccupied()) activePieces.add(square.getPiece());
+        }
+
     }
 
 }

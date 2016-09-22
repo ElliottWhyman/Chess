@@ -2,6 +2,7 @@ package me.itselliott.chess.piece.pieces;
 
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.math.Vector2n;
+import me.itselliott.chess.piece.Claimable;
 import me.itselliott.chess.piece.Piece;
 import me.itselliott.chess.piece.PieceIcon;
 
@@ -9,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Knight extends Piece {
+public class Knight extends Piece implements Claimable {
 
     private Set<Vector2n> unitMoveVectors = new HashSet<Vector2n>();
 

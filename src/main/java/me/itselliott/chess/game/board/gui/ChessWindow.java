@@ -10,8 +10,9 @@ import javafx.stage.Stage;
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
+import me.itselliott.chess.piece.Piece;
 
-public class Window extends Application {
+public class ChessWindow extends Application {
 
     public void open() {
         launch();
@@ -45,8 +46,8 @@ public class Window extends Application {
 
     public static void moveIcon(Square from, Square to) {
         if (from.isOccupied()) {
-            to.getRectangle().setFill(new ImagePattern(new Image(from.getPiece().getPieceIcon().getLocation())));
-            from.getRectangle().setFill(from.getColour() == Player.WHITE ? Color.GRAY : Color.DARKGRAY);
+            removeIcon(from);
+            addIcon(to, from.getPiece());
         }
     }
 
@@ -56,4 +57,7 @@ public class Window extends Application {
         }
     }
 
+    public static void addIcon(Square square, Piece piece) {
+        square.getRectangle().setFill(new ImagePattern(new Image(piece.getPieceIcon().getLocation())));
+    }
 }
