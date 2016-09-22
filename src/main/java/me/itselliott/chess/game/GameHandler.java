@@ -1,6 +1,5 @@
 package me.itselliott.chess.game;
 
-import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.piece.Piece;
 import org.jetbrains.annotations.Nullable;
 

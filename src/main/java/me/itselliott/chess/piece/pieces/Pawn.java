@@ -1,13 +1,13 @@
 package me.itselliott.chess.piece.pieces;
 
-import javafx.scene.Scene;
 import me.itselliott.chess.game.Player;
-import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.*;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pawn extends Piece implements Promotable {
 

@@ -66,7 +66,7 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(6,7), new Knight(Vector2n.valueOf(6,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));
         Board.setSquare(Vector2n.valueOf(5,7), new Bishop(Vector2n.valueOf(5,7), Player.BLACK, PieceIcon.BISHOP_BLACK));
         Board.setSquare(Vector2n.valueOf(4,7), new Bishop(Vector2n.valueOf(4,7), Player.BLACK, PieceIcon.KING_BLACK));
-        //Board.setSquare(Vector2n.valueOf(3,7), new Queen(Vector2n.valueOf(3,7), Player.BLACK, PieceIcon.QUEEN_BLACK));
+        Board.setSquare(Vector2n.valueOf(3,7), new Queen(Vector2n.valueOf(3,7), Player.BLACK, PieceIcon.QUEEN_BLACK));
         Board.setSquare(Vector2n.valueOf(2,7), new Rook(Vector2n.valueOf(2,7), Player.BLACK, PieceIcon.ROOK_BLACK));
         Board.setSquare(Vector2n.valueOf(1,7), new Knight(Vector2n.valueOf(1,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));
         Board.setSquare(Vector2n.valueOf(0,7), new Bishop(Vector2n.valueOf(0,7), Player.BLACK, PieceIcon.BISHOP_BLACK));
@@ -82,7 +82,7 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(0,6), new Pawn(Vector2n.valueOf(0,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(1,6), new Pawn(Vector2n.valueOf(1,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(2,6), new Pawn(Vector2n.valueOf(2,6), Player.BLACK, PieceIcon.PAWN_BLACK));
-        //Board.setSquare(Vector2n.valueOf(3,6), new Pawn(Vector2n.valueOf(3,6), Player.BLACK, PieceIcon.PAWN_BLACK));
+        Board.setSquare(Vector2n.valueOf(3,6), new Pawn(Vector2n.valueOf(3,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(4,6), new Pawn(Vector2n.valueOf(4,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(5,6), new Pawn(Vector2n.valueOf(5,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(6,6), new Pawn(Vector2n.valueOf(6,6), Player.BLACK, PieceIcon.PAWN_BLACK));

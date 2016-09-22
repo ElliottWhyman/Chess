@@ -3,10 +3,6 @@ package me.itselliott.chess.math;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Vector2n {
 
     private static Table<Integer, Integer, Vector2n> vectorTable = HashBasedTable.create();

@@ -2,12 +2,9 @@ package me.itselliott.chess.game.board;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.collect.Maps;
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.Piece;
-
-import java.util.*;
 
 public class Board {
 

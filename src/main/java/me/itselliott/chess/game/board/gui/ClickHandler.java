@@ -1,13 +1,10 @@
 package me.itselliott.chess.game.board.gui;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
 import me.itselliott.chess.game.GameHandler;
 import me.itselliott.chess.game.Player;
-import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.piece.Promotable;
 
