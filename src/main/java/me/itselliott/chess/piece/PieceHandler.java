@@ -5,10 +5,21 @@ import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.pieces.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class PieceHandler {
+
+    private static Set<Piece> takenPieces = new HashSet<>();
 
     private PieceHandler() {
 
+    }
+
+    public static void takePiece(Piece taking, Piece taken) {
+        if (!takenPieces.contains(taken)) {
+            takenPieces.add(taken);
+        }
     }
 
 
@@ -47,6 +58,8 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(5,6), new Pawn(Vector2n.valueOf(5,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(6,6), new Pawn(Vector2n.valueOf(6,6), Player.BLACK, PieceIcon.PAWN_BLACK));
         Board.setSquare(Vector2n.valueOf(7,6), new Pawn(Vector2n.valueOf(7,6), Player.BLACK, PieceIcon.PAWN_BLACK));
+
+        System.out.println("size: " + takenPieces.size());
     }
 
 }

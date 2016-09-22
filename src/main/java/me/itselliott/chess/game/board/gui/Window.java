@@ -46,7 +46,13 @@ public class Window extends Application {
     public static void moveIcon(Square from, Square to) {
         if (from.isOccupied()) {
             to.getRectangle().setFill(new ImagePattern(new Image(from.getPiece().getPieceIcon().getLocation())));
-            from.getRectangle().setFill(from.getColour() == Player.WHITE ? Color.GRAY : Color.DARKGRAY );
+            from.getRectangle().setFill(from.getColour() == Player.WHITE ? Color.GRAY : Color.DARKGRAY);
+        }
+    }
+
+    public static void removeIcon(Square square) {
+        if (square.isOccupied()) {
+            square.getRectangle().setFill(square.getColour() == Player.WHITE ? Color.GRAY : Color.DARKGRAY);
         }
     }
 

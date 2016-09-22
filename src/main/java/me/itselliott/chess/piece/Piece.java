@@ -43,12 +43,15 @@ public abstract class Piece {
                 if (vector.getCartesianX() > 8 || vector.getCartesianY() > 8 || vector.getCartesianX() < 0 || vector.getCartesianY() < 0) {
                     break;
                 }
-                if (square != null && square.isOccupied()) {
-                    // TODO: Handle piece capturing
-                    break;
-                }
-                if (vector.equals(positionVector) && !Board.getSquare(positionVector).isOccupied()) {
+                if (vector.equals(positionVector)) {
+                    if (square.isOccupied()) {
+                        if (square.getPiece().getPlayer().equals(this.getPlayer())) break;
+                        else return true;
+                    }
                     return true;
+                }
+                if (square != null && square.isOccupied()) {
+                    break;
                 }
             }
         }
@@ -57,13 +60,14 @@ public abstract class Piece {
 
     public void move(Square to) {
         if (to.isOccupied()) {
-            // TODO: Handle piece capturing
-        } else {
-            Window.moveIcon(Board.getSquare(this.getPositionVector()), to);
-            Board.setSquare(this.getPositionVector(), null);
-            Board.setSquare(to.getPositionVector(), this);
-            this.positionVector = to.getPositionVector();
+            PieceHandler.takePiece(this, to.getPiece());
+            Window.removeIcon(to);
+            System.out.println(this.getPlayer() + " has taken " + to.getPiece().getPlayer() + "'s " + to.getPiece().getClass().getSimpleName());
         }
+        Window.moveIcon(Board.getSquare(this.getPositionVector()), to);
+        Board.setSquare(this.getPositionVector(), null);
+        Board.setSquare(to.getPositionVector(), this);
+        this.positionVector = to.getPositionVector();
     }
 
     public abstract boolean canMove(Vector2n positionVector);

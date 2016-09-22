@@ -27,7 +27,8 @@ public class ShiftKeyOverlay implements EventHandler<KeyEvent> {
                 Set<Square> squares = GameHandler.getActivePiece().getMoves();
                 if (pressedOrReleased) {
                     for (Square square : squares) {
-                        square.getRectangle().setFill(Color.LIGHTBLUE);
+                        if (square.isOccupied()) square.getRectangle().setFill(Color.RED);
+                        else square.getRectangle().setFill(Color.LIGHTBLUE);
                     }
                 } else {
                     for (Square square : squares) {
