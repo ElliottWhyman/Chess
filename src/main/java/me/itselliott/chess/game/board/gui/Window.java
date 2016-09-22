@@ -1,16 +1,12 @@
 package me.itselliott.chess.game.board.gui;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
-import me.itselliott.chess.game.GameHandler;
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
