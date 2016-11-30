@@ -25,9 +25,9 @@ public class Pawn extends Piece implements Promotable {
 
     @Override
     public boolean canMove(Vector2n positionVector) {
-        if (Board.getSquare(positionVector).isOccupied() && Arrays.asList(UnitMoveVector.LEFT_DIAGONAL_DOWN.getUnitVector(), UnitMoveVector.RIGHT_DIAGONAL_DOWN.getUnitVector()).contains(this.getPositionVector().subtract(positionVector)))
-            return true;
-        return super.canMove(positionVector, (moves < 1 ? 2 : 1));
+        return (Board.getSquare(positionVector).isOccupied() && (this.getPlayer().equals(Player.WHITE) && Arrays.asList(UnitMoveVector.LEFT_DIAGONAL_DOWN.getUnitVector(), UnitMoveVector.RIGHT_DIAGONAL_DOWN.getUnitVector()).contains(this.getPositionVector().subtract(positionVector))
+                || this.getPlayer().equals(Player.BLACK) && Arrays.asList(UnitMoveVector.LEFT_DIAGONAL_UP.getUnitVector(), UnitMoveVector.RIGHT_DIAGONAL_UP.getUnitVector()).contains(this.getPositionVector().subtract(positionVector))))
+                || super.canMove(positionVector, (moves < 1 ? 2 : 1));
     }
 
     @Override
