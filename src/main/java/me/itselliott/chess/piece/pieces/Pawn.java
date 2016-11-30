@@ -1,6 +1,7 @@
 package me.itselliott.chess.piece.pieces;
 
 import me.itselliott.chess.game.Player;
+import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.*;
@@ -24,6 +25,8 @@ public class Pawn extends Piece implements Promotable {
 
     @Override
     public boolean canMove(Vector2n positionVector) {
+        if (Board.getSquare(positionVector).isOccupied() && Arrays.asList(UnitMoveVector.LEFT_DIAGONAL_DOWN.getUnitVector(), UnitMoveVector.RIGHT_DIAGONAL_DOWN.getUnitVector()).contains(this.getPositionVector().subtract(positionVector)))
+            return true;
         return super.canMove(positionVector, (moves < 1 ? 2 : 1));
     }
 
