@@ -1,11 +1,9 @@
 package me.itselliott.chess;
 
 import me.itselliott.chess.game.GameHandler;
-import me.itselliott.chess.game.Player;
 import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.gui.ChessWindow;
 import me.itselliott.chess.piece.PieceHandler;
-import me.itselliott.chess.piece.pieces.Queen;
 
 public class Chess {
 
@@ -28,7 +26,6 @@ public class Chess {
         Board.setSquare(Vector2n.valueOf(3,3), new Queen(Vector2n.valueOf(3,3), Player.WHITE, PieceIcon.QUEEN_WHITE));
         Board.setSquare(Vector2n.valueOf(5,3), new King(Vector2n.valueOf(5,3), Player.BLACK, PieceIcon.KING_BLACK));*/
         PieceHandler.addAllPieces();
-        PieceHandler.removePiece(PieceHandler.getPieceByPlayer(Queen.class, Player.WHITE));
         chess.getWindow().open();
 
     }
