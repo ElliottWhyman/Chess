@@ -1,11 +1,13 @@
 package me.itselliott.chess.game;
 
 public enum Player {
-    WHITE,BLACK;
+    WHITE, BLACK;
 
-    public static Player inverse() {
-        if (GameHandler.getCurrentTurn() == WHITE) return BLACK;
-        if (GameHandler.getCurrentTurn() == BLACK) return WHITE;
-        else return WHITE;
+    public static Player inverse(Player player) {
+        switch (player) {
+            case WHITE: return BLACK;
+            case BLACK: return WHITE;
+            default: return WHITE;
+        }
     }
 }

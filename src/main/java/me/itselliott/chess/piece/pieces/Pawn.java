@@ -39,9 +39,6 @@ public class Pawn extends Piece implements Promotable {
     @Override
     public void promote(Piece promoting, Piece promoteTo, Square to) {
         promoting.move(to);
-        if (to.isOccupied() && to.getPiece() != null) {
-            PieceHandler.removePiece(to.getPiece());
-        }
         PieceHandler.addPiece(promoteTo, to);
         System.out.println(promoteTo.getPlayer() + " has promote their " + this.getClass().getSimpleName() + " to a " + promoteTo.getClass().getSimpleName());
     }

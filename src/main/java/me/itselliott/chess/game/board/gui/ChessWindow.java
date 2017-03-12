@@ -14,6 +14,7 @@ import me.itselliott.chess.piece.Piece;
 
 public class ChessWindow extends Application {
 
+
     public void open() {
         launch();
     }
@@ -30,15 +31,8 @@ public class ChessWindow extends Application {
     private Group makeBoard() {
         Group group = new Group();
         for (Square square : Board.getBoard().values()) {
-            if (square.getColour().equals(Player.BLACK)) {
-                square.getRectangle().setFill(Color.DARKGRAY);
-            } else if (square.getColour().equals(Player.WHITE)) {
-                square.getRectangle().setFill(Color.GRAY);
-            }
-            if (square.isOccupied()) {
-                square.getRectangle().setFill(new ImagePattern(new Image(square.getPiece().getPieceIcon().getLocation())));
-            }
-            square.getRectangle().setOnMouseClicked(new ClickHandler(square));
+            Board.colourSquare(square);
+            square.getRectangle().setOnMouseClicked(new Click(square));
             group.getChildren().add(square.getRectangle());
         }
         return group;
@@ -60,4 +54,5 @@ public class ChessWindow extends Application {
     public static void addIcon(Square square, Piece piece) {
         square.getRectangle().setFill(new ImagePattern(new Image(piece.getPieceIcon().getLocation())));
     }
+
 }

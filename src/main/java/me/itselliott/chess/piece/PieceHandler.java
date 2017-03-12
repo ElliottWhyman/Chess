@@ -6,7 +6,6 @@ import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.game.board.gui.ChessWindow;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.pieces.*;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,16 +38,20 @@ public class PieceHandler {
         }
     }
 
-    public static @Nullable Piece getPieceByPlayer(Class<? extends Piece> pieceClass, Player player) {
+    public static Piece getPieceByPlayer(Class<? extends Piece> pieceClass, Player player) {
         for (Piece piece : activePieces) {
             if (piece.getClass().equals(pieceClass) && piece.getPlayer().equals(player))
                 return piece;
         }
-        return null;
+        return Piece.empty();
     }
 
     public static Set<Piece> getTakenPieces(Player player) {
        return takenPieces.stream().filter(piece -> piece.getPlayer().equals(player)).collect(Collectors.toSet());
+    }
+
+    public static Set<Piece> getActivePieces(Player player) {
+        return activePieces.stream().filter(piece -> piece.getPlayer().equals(player)).collect(Collectors.toSet());
     }
 
 
@@ -65,7 +68,7 @@ public class PieceHandler {
         Board.setSquare(Vector2n.valueOf(7,7), new Rook(Vector2n.valueOf(7,7), Player.BLACK, PieceIcon.ROOK_BLACK));
         Board.setSquare(Vector2n.valueOf(6,7), new Knight(Vector2n.valueOf(6,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));
         Board.setSquare(Vector2n.valueOf(5,7), new Bishop(Vector2n.valueOf(5,7), Player.BLACK, PieceIcon.BISHOP_BLACK));
-        Board.setSquare(Vector2n.valueOf(4,7), new Bishop(Vector2n.valueOf(4,7), Player.BLACK, PieceIcon.KING_BLACK));
+        Board.setSquare(Vector2n.valueOf(4,7), new King(Vector2n.valueOf(4,7), Player.BLACK, PieceIcon.KING_BLACK));
         Board.setSquare(Vector2n.valueOf(3,7), new Queen(Vector2n.valueOf(3,7), Player.BLACK, PieceIcon.QUEEN_BLACK));
         Board.setSquare(Vector2n.valueOf(2,7), new Rook(Vector2n.valueOf(2,7), Player.BLACK, PieceIcon.ROOK_BLACK));
         Board.setSquare(Vector2n.valueOf(1,7), new Knight(Vector2n.valueOf(1,7), Player.BLACK, PieceIcon.KNIGHT_BLACK));

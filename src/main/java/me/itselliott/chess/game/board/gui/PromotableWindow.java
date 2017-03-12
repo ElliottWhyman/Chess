@@ -10,7 +10,9 @@ import me.itselliott.chess.piece.Piece;
 import me.itselliott.chess.piece.PieceHandler;
 import me.itselliott.chess.piece.Promotable;
 
-
+/**
+ * TODO:
+ */
 public class PromotableWindow  {
 
     private Piece piece;

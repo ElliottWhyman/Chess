@@ -67,6 +67,7 @@ public class Vector2n {
         return x * 31 + y;
     }
 
+
     @Override
     public boolean equals(Object object) {
         if (object instanceof Vector2n) {

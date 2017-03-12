@@ -2,6 +2,9 @@ package me.itselliott.chess.game.board;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import me.itselliott.chess.game.Player;
 import me.itselliott.chess.math.Vector2n;
 import me.itselliott.chess.piece.Piece;
@@ -15,7 +18,7 @@ public class Board {
         boolean white = true;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board.put(Vector2n.valueOf(i,j), new Square(null, white ? Player.WHITE : Player.BLACK, i , j));
+                board.put(Vector2n.valueOf(i,j), new Square(Piece.empty(), white ? Player.WHITE : Player.BLACK, i , j));
                 white = !white;
             }
             white = !white;
@@ -33,6 +36,16 @@ public class Board {
         return board.get(positionVector);
     }
 
+    public static void colourSquare(Square square) {
+        if (square.getColour().equals(Player.BLACK)) {
+            square.getRectangle().setFill(Color.DARKGRAY);
+        } else if (square.getColour().equals(Player.WHITE)) {
+            square.getRectangle().setFill(Color.GRAY);
+        }
+        if (square.isOccupied()) {
+            square.getRectangle().setFill(new ImagePattern(new Image(square.getPiece().getPieceIcon().getLocation())));
+        }
+    }
 
     public static BiMap<Vector2n, Square> getBoard() {
         return board;

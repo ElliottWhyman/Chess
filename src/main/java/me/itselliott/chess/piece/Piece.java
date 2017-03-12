@@ -5,6 +5,7 @@ import me.itselliott.chess.game.board.Board;
 import me.itselliott.chess.game.board.Square;
 import me.itselliott.chess.game.board.gui.ChessWindow;
 import me.itselliott.chess.math.Vector2n;
+import me.itselliott.chess.piece.pieces.NoPiece;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -63,7 +64,7 @@ public abstract class Piece {
             PieceHandler.removePiece(to.getPiece());
         }
         ChessWindow.moveIcon(Board.getSquare(this.getPositionVector()), to);
-        Board.setSquare(this.getPositionVector(), null);
+        Board.setSquare(this.getPositionVector(), Piece.empty());
         Board.setSquare(to.getPositionVector(), this);
         this.positionVector = to.getPositionVector();
     }
@@ -83,7 +84,15 @@ public abstract class Piece {
         this.positionVector = positionVector;
     }
 
+
+    private static final Piece empty = new NoPiece();
+
+    public static Piece empty() {
+        return empty;
+    }
+
     public abstract Set<Vector2n> getUnitMoveVectors();
+
 
 }
 
